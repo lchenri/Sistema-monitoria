@@ -4,31 +4,66 @@
  */
 package com.mycompany.sistema.monitoria;
 
+import java.util.Scanner;
+
 /**
  *
  * @author lucas
  */
-public class Maca extends Produtos{
+public final class Maca extends Produtos {
 
-    public Maca() {
-        valor = (float) 3.99;
-        
-        
+    private Scanner in = new Scanner(System.in);
+
+    public Maca(boolean admin) {
+        if (admin == true) {
+            setValor();
+        } else {
+            this.valor = (float) 3.99;
+        }
+        this.nome = "Maca";
+        quantidade();
+        peso();
+        valor_subtotal();
+    }
+
+    private void setValor() {
+        float valor;
+        System.out.println("Digite um valor para a Maca:");
+        valor = in.nextFloat();
+        this.valor = valor;
     }
 
     @Override
-    public int quantidade() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void quantidade() {
+        int quantidade1;
+        System.out.println("Digite a quantidade: ");
+        quantidade1 = in.nextInt();
+        this.quantidade = quantidade1;
     }
 
     @Override
-    public float peso() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void peso() {
+        float peso1;
+        System.out.println("Digite o peso: (caso não tenha, apenas digite 1)");
+        peso1 = in.nextFloat();
+        this.peso = peso1;
     }
 
     @Override
-    public float valor_subtotal() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void valor_subtotal() {
+        float subtotal1;
+        subtotal1 = this.peso * this.quantidade * this.valor;
+        this.subtotal = subtotal1;
     }
-    
+
+    @Override
+    public String getNome() {
+        return this.nome;
+    }
+
+    @Override
+    public float getSubtotal() {
+        return this.subtotal;
+    }
+
 }

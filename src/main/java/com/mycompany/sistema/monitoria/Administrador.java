@@ -12,7 +12,7 @@ public class Administrador extends Funcionario{
 
     public Administrador(String nome) {
         super(nome);
-        admin = true;
+        this.admin = true;
     }
     
     

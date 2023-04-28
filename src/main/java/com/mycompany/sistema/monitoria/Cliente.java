@@ -4,6 +4,7 @@
  */
 package com.mycompany.sistema.monitoria;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -25,6 +26,19 @@ public class Cliente {
     
     public void adicionaProdutoLista(Produtos p){
         lista_produtos.add(p);
+    }
+    
+    public void geraNotaFiscal(){
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        System.out.println("\n\n--GERANDO NOTA FISCAL--");
+        for(Produtos c : lista_produtos){
+            System.out.println(c.getNome() + "-- R$ "  + df.format(c.getSubtotal()));
+        }
+    }
+    
+    public void cancelaCompra(){
+        lista_produtos.clear();
     }
     
 }

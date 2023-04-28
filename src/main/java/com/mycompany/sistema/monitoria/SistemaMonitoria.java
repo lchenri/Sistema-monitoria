@@ -20,8 +20,10 @@ public class SistemaMonitoria {
         cargo = in.nextInt();
         if(cargo == 1){
             Funcionario f1 = new Funcionario(nome);
+            f1.opcoes();
         }else{
             Administrador adm = new Administrador(nome);
+            adm.opcoes();
         }
         
     }

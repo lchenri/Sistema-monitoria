@@ -9,7 +9,9 @@ package com.mycompany.sistema.monitoria;
  * @author lucas
  */
 public abstract class Produtos implements InterfaceProdutos{
+    protected String nome;
     protected float valor;
     protected int quantidade;
     protected float peso;
+    protected float subtotal;
 }

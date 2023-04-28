@@ -3,27 +3,59 @@ package com.mycompany.sistema.monitoria;
 import java.util.Scanner;
 
 public class Funcionario {
-    
-    private Scanner in;
+
+    private Scanner in = new Scanner(System.in);
     private String nome;
     protected boolean admin;
-    
+    private Cliente c;
+
     public Funcionario(String nome) {
         this.nome = nome;
         admin = false;
         //Venda tela = new Venda(this);
-        opcoes();
     }
-    
-    private void imprimeHome(){
+
+    private void imprimeHome() {
         System.out.println("""
                            1 - Venda
-                           2 - Opcoes
+                           2 - Ferramentas
                            0 - Sair
                            """);
     }
-    
-    private void imprimeVenda(){
+
+    private void imprimeFerramentasAdmin() {
+        System.out.println("""
+                           1 - Gerar nota fiscal
+                           2 - Cancelar Compra
+                           3 - Voltar
+                           """);
+    }
+
+    private void ferramentas(boolean adm) {
+        int opc;
+        do {
+            imprimeFerramentasAdmin();
+            opc = in.nextInt();
+            switch (opc) {
+                case 1:
+                        c.geraNotaFiscal();
+                    break;
+                case 2:
+                    if(adm == false){
+                        System.out.println("Você não tem permissão para cancelar a compra.");
+                    }else{
+                        System.out.println("Compra cancelada");
+                        c.cancelaCompra();
+                    }
+                case 3:
+                    return;
+                default:
+                    System.out.println("Opcao Invalida");;
+            }
+        }while(opc != 3);
+    }
+
+    private void imprimeVenda() {
         System.out.println("""
                            1 - Maca
                            2 - Arroz
@@ -31,61 +63,70 @@ public class Funcionario {
                            4 - Coca-Cola
                            5 - Trakinas
                            6 - Picanha
+                           0 - Voltar
                            """);
     }
-    
-    private void venda(){
-        Cliente c = new Cliente();
+
+    private void venda() {
+        c = new Cliente();
         int op;
-        do{
+        do {
             imprimeVenda();
             op = in.nextInt();
-            switch(op){
+            switch (op) {
                 case 1:
-                    Maca maca = new Maca();
+                    Maca maca = new Maca(this.admin);
                     c.adicionaProdutoLista(maca);
                     break;
                 case 2:
-                    Arroz arroz = new Arroz();
+                    Arroz arroz = new Arroz(this.admin);
                     c.adicionaProdutoLista(arroz);
                     break;
                 case 3:
-                    Sprite sprite = new Sprite();
+                    Sprite sprite = new Sprite(this.admin);
                     c.adicionaProdutoLista(sprite);
                     break;
-                case 4: 
-                    CocaCola coca = new CocaCola();
+                case 4:
+                    CocaCola coca = new CocaCola(this.admin);
                     c.adicionaProdutoLista(coca);
                     break;
                 case 5:
-                    Trakinas trakinas = new Trakinas();
+                    Trakinas trakinas = new Trakinas(this.admin);
                     c.adicionaProdutoLista(trakinas);
                     break;
                 case 6:
-                    Picanha picanha = new Picanha();
+                    Picanha picanha = new Picanha(this.admin);
                     c.adicionaProdutoLista(picanha);
                     break;
+                case 0:
+                    return;
                 default:
                     System.out.println("Numero incorreto");
             }
-        }while (op != 0);
+        } while (op != 0);
     }
-    
-    private void opcoes(){
+
+    protected void opcoes() {
         int opc;
-        do{
+        do {
             imprimeHome();
             opc = in.nextInt();
             switch (opc) {
                 case 1:
                     venda();
                     break;
+                case 2:
+                    ferramentas(admin);
+                    break;
+                case 0:
+                    return;
                 default:
-                    throw new AssertionError();
+                    System.out.println("Opcao Invalida!");
             }
-        }while(opc != 0);
+        } while (opc != 0);
     }
-    public boolean getAdmin(){
+
+    public boolean getAdmin() {
         return admin;
     }
 }

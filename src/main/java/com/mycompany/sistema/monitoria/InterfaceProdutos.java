@@ -9,7 +9,9 @@ package com.mycompany.sistema.monitoria;
  * @author lucas
  */
 public interface InterfaceProdutos {
-    public int quantidade();
-    public float peso();
-    public float valor_subtotal();
+    public void quantidade();
+    public void peso();
+    public void valor_subtotal();
+    public String getNome();
+    public float getSubtotal();
 }
