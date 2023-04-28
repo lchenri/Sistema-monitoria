@@ -1,6 +1,8 @@
 package com.mycompany.sistema.monitoria;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Funcionario {
 
@@ -8,6 +10,7 @@ public class Funcionario {
     private String nome;
     protected boolean admin;
     private Cliente c;
+    private Set<Cliente> lista_clientes = new HashSet<>();
 
     public Funcionario(String nome) {
         this.nome = nome;
@@ -27,7 +30,8 @@ public class Funcionario {
         System.out.println("""
                            1 - Gerar nota fiscal
                            2 - Cancelar Compra
-                           3 - Voltar
+                           3 - Visualizar compras
+                           4 - Voltar
                            """);
     }
 
