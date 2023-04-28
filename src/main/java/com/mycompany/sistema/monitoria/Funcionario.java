@@ -15,7 +15,6 @@ public class Funcionario {
     public Funcionario(String nome) {
         this.nome = nome;
         admin = false;
-        //Venda tela = new Venda(this);
     }
 
     private void imprimeHome() {
@@ -43,6 +42,8 @@ public class Funcionario {
         for (Cliente cliente : lista_clientes) {
             cliente.geraNotaFiscal();
         }
+        
+        System.out.println("Total de clientes: " + Cliente.getTotalClientes());
     }
 
     private void ferramentas(boolean adm) {

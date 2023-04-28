@@ -13,7 +13,7 @@ public class Cliente {
     private Scanner input = new Scanner(System.in);
     private String nome_cliente;
     private List<Produtos> lista_produtos = new ArrayList<>();
-    private static float totalClientes = 0;
+    private static int totalClientes = 0;
     private float totalCompra = 0;
 
     public Cliente() {
@@ -24,6 +24,11 @@ public class Cliente {
 
     public void adicionaProdutoLista(Produtos p) {
         lista_produtos.add(p);
+    }
+    
+    
+    public static int getTotalClientes(){
+        return totalClientes;
     }
 
     public void geraNotaFiscal() {
