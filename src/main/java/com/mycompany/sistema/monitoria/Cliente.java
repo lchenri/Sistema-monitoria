@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.sistema.monitoria;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,28 +12,35 @@ public class Cliente {
 
     private Scanner input = new Scanner(System.in);
     private String nome_cliente;
-    private List<Produtos>  lista_produtos = new ArrayList<>();
-    
+    private List<Produtos> lista_produtos = new ArrayList<>();
+    private static float totalClientes = 0;
+    private float totalCompra = 0;
+
     public Cliente() {
         System.out.println("Digite o nome do cliente: ");
         this.nome_cliente = input.nextLine();
+        totalClientes++;
     }
-    
-    public void adicionaProdutoLista(Produtos p){
+
+    public void adicionaProdutoLista(Produtos p) {
         lista_produtos.add(p);
     }
-    
-    public void geraNotaFiscal(){
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(2);
+
+    public void geraNotaFiscal() {
         System.out.println("\n\n--GERANDO NOTA FISCAL--");
-        for(Produtos c : lista_produtos){
-            System.out.println(c.getNome() + "-- R$ "  + df.format(c.getSubtotal()));
+        System.out.println("Nome: " + this.nome_cliente);
+        for (Produtos c : lista_produtos) {
+            System.out.printf("%-25s %,10.2f\n", c.getNome(), c.subtotal);
+            totalCompra += c.subtotal;
         }
+        System.out.printf("%-25s %,10.2f\n", "Total da Compra:", totalCompra);
+        System.out.println();
+        System.out.println();
     }
-    
-    public void cancelaCompra(){
+
+    public void limpaCompra() {
         lista_produtos.clear();
+        this.totalCompra = 0;
     }
-    
+
 }

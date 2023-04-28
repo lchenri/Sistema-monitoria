@@ -8,13 +8,11 @@ package com.mycompany.sistema.monitoria;
  *
  * @author lucas
  */
-public class Administrador extends Funcionario{
+public class Administrador extends Funcionario {
 
     public Administrador(String nome) {
         super(nome);
         this.admin = true;
     }
-    
-    
-    
+
 }

@@ -35,6 +35,16 @@ public class Funcionario {
                            """);
     }
 
+    private void novoCliente() {
+        lista_clientes.add(c);
+    }
+
+    private void visualizaCompras() {
+        for (Cliente cliente : lista_clientes) {
+            cliente.geraNotaFiscal();
+        }
+    }
+
     private void ferramentas(boolean adm) {
         int opc;
         do {
@@ -42,21 +52,30 @@ public class Funcionario {
             opc = in.nextInt();
             switch (opc) {
                 case 1:
-                        c.geraNotaFiscal();
-                    break;
+                    c.geraNotaFiscal();
+                    novoCliente();
+                    return;
                 case 2:
-                    if(adm == false){
-                        System.out.println("Você não tem permissão para cancelar a compra.");
-                    }else{
+                    if (adm == false) {
+                        System.out.println("Você nao tem permissão para cancelar a compra.");
+                    } else {
                         System.out.println("Compra cancelada");
-                        c.cancelaCompra();
+                        c.limpaCompra();
                     }
                 case 3:
+                    if (adm == false) {
+                        System.out.println("Voce nao tem permissao para usar essa funcao!.");
+                    } else {
+                        visualizaCompras();
+                    }
+                    break;
+                case 4:
                     return;
                 default:
-                    System.out.println("Opcao Invalida");;
+                    System.out.println("Opcao Invalida");
+                    ;
             }
-        }while(opc != 3);
+        } while (opc != 4);
     }
 
     private void imprimeVenda() {

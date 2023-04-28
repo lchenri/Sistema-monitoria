@@ -4,11 +4,6 @@ import java.util.Scanner;
 
 public class SistemaMonitoria {
     
-    //mostra a GUI
-    public static void inicia_programa(){
-        //Tela inicio = new Tela();     
-       // Venda venda = new Venda();
-    }
     
     public static void inicio(){
         Scanner in = new Scanner(System.in);
@@ -29,7 +24,6 @@ public class SistemaMonitoria {
     }
     
     public static void main(String[] args) {
-       //inicia_programa();
        inicio();
     }
 }
